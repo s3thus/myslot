@@ -599,7 +599,7 @@ function MySlot:RecoverData(msg)
         end
 
     end
-    -- SaveBindings(GetCurrentBindingSet())
+    AttemptToSaveBindings(GetCurrentBindingSet())
 
     MySlot:Print(L["All slots were restored"])
 end
@@ -620,6 +620,6 @@ function MySlot:Clear(what)
                 end
             end
         end
-        SaveBindings(GetCurrentBindingSet())
+        AttemptToSaveBindings(GetCurrentBindingSet())
     end
 end
