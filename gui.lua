@@ -4,7 +4,8 @@ local L = MySlot.L
 local RegEvent = MySlot.regevent
 
 
-local f = CreateFrame("Frame", nil, UIParent)
+local f = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
+
 f:SetWidth(650)
 f:SetHeight(600)
 f:SetBackdrop({
@@ -37,7 +38,7 @@ do
     t:SetPoint("TOP", f, 0, 12)
     f.texture = t
 end
-    
+
 do
     local t = f:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     t:SetText(L["Myslot"])
@@ -173,21 +174,21 @@ end
 
 RegEvent("ADDON_LOADED", function()
     do
-        local t = CreateFrame("Frame", nil, f)
+        local t = CreateFrame("Frame", nil, f, "BackdropTemplate")
         t:SetWidth(600)
         t:SetHeight(400)
         t:SetPoint("TOPLEFT", f, 25, -75)
-        t:SetBackdrop({ 
+        t:SetBackdrop({
             bgFile = "Interface/Tooltips/UI-Tooltip-Background",
             edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
             tile = true,
             tileEdge = true,
             tileSize = 16,
             edgeSize = 16,
-            insets = { left = -2, right = -2, top = -2, bottom = -2 },    
+            insets = { left = -2, right = -2, top = -2, bottom = -2 },
         })
         t:SetBackdropColor(0, 0, 0, 0)
-    
+
         local s = CreateFrame("ScrollFrame", nil, t, "UIPanelScrollFrameTemplate")
         s:SetWidth(560)
         s:SetHeight(375)
@@ -223,7 +224,7 @@ RegEvent("ADDON_LOADED", function()
         end)
 
         exportEditbox = edit
-    end    
+    end
 
 
     do
@@ -237,7 +238,7 @@ RegEvent("ADDON_LOADED", function()
             tt.ShowUnsaved = function()
                 tt:SetText(YELLOW_FONT_COLOR:WrapTextInColorCode(L["Unsaved"]))
             end
-            
+
             infolabel = tt
         end
 
@@ -366,7 +367,7 @@ RegEvent("ADDON_LOADED", function()
                     StaticPopupDialogs["MYSLOT_CONFIRM_DELETE"].OnAccept = function()
                         StaticPopup_Hide("MYSLOT_CONFIRM_DELETE")
                         table.remove(exports, c)
-                        
+
                         if #exports == 0 then
                             UIDropDownMenu_SetSelectedValue(t, nil)
                             UIDropDownMenu_SetText(t, "")
@@ -379,7 +380,7 @@ RegEvent("ADDON_LOADED", function()
                 end
             end)
         end
-       
+
         do
             local b = CreateFrame("Button", nil, f, "GameMenuButtonTemplate")
             b:SetWidth(70)
